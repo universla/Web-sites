@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contenido Premium - Minecraft Code</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gradient-to-br from-purple-900 to-pink-900 min-h-screen text-white">
+
+  <!-- Header -->
+  <header class="bg-black bg-opacity-30 backdrop-blur-sm">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-3xl font-bold">💎 Contenido Premium</h1>
+      <nav class="space-x-4">
+        <a href="index.html" class="hover:underline">Inicio</a>
+        <a href="videos.html" class="hover:underline">Videos</a>
+        <a href="dashboard.html" class="hover:underline">Mi Panel</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Contenido -->
+  <main class="container mx-auto px-4 py-10">
+    <div id="premiumContent" class="hidden">
+      <div class="text-center mb-10">
+        <h1 class="text-4xl font-bold mb-4">¡Bienvenido al Contenido Premium! 🎉</h1>
+        <p class="text-xl">Aquí encontrarás proyectos exclusivos, descargas y tutoriales avanzados.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-yellow-500 text-black p-6 rounded-lg">
+          <h3 class="text-2xl font-bold mb-3">📥 Descargas Exclusivas</h3>
+          <ul class="space-y-2">
+            <li>• Modpack "CodeMaster v2.0"</li>
+            <li>• Resource Pack "Dev Edition"</li>
+            <li>• Mundo preconstruido con redstone avanzada</li>
+          </ul>
+          <button class="mt-4 w-full py-2 bg-black text-white rounded hover:bg-gray-800">
+            Descargar Todo (ZIP)
+          </button>
+        </div>
+
+        <div class="bg-pink-500 text-black p-6 rounded-lg">
+          <h3 class="text-2xl font-bold mb-3">🎬 Videos Exclusivos</h3>
+          <ul class="space-y-2">
+            <li>• Crea tu propio servidor con plugins personalizados</li>
+            <li>• Automatiza tus granjas con Python</li>
+            <li>• Diseña mods con JavaScript y Blockbench</li>
+          </ul>
+          <button class="mt-4 w-full py-2 bg-black text-white rounded hover:bg-gray-800">
+            Ver Playlist Premium
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="upsell" class="bg-black bg-opacity-40 p-8 rounded-lg text-center hidden">
+      <h2 class="text-3xl font-bold mb-4">¡Desbloquea el Contenido Premium!</h2>
+      <p class="text-lg mb-6">Por solo $5 USD al mes, obtén acceso a todos los proyectos, descargas y videos exclusivos.</p>
+      <button onclick="simularPago()" class="px-8 py-4 bg-yellow-500 text-black rounded-lg text-xl font-bold hover:bg-yellow-400 transition transform hover:scale-105">
+        ¡QUIERO PREMIUM! - $5/mes
+      </button>
+      <p class="mt-4 text-sm text-gray-400">Pago simulado. En versión real usaríamos Stripe o PayPal.</p>
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+  <script>
+    function checkAccess() {
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (!user) {
+        window.location.href = 'login.html';
+        return;
+      }
+
+      const premiumContent = document.getElementById('premiumContent');
+      const upsell = document.getElementById('upsell');
+
+      if (user.plan === 'premium' || user.plan === 'vip') {
+        premiumContent.classList.remove('hidden');
+      } else {
+        upsell.classList.remove('hidden');
+     
