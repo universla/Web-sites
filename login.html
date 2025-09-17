@@ -1,16 +1,19 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Iniciar Sesión - Minecraft Code</title>
+  <title>Iniciar Sesión - CodeSnippets Pro</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="../css/style.css">
 </head>
-<body class="bg-gradient-to-br from-blue-900 to-purple-900 min-h-screen flex items-center justify-center text-white">
+<body class="bg-gradient-to-br from-slate-900 to-blue-900 min-h-screen flex items-center justify-center text-white">
 
   <div class="bg-black bg-opacity-40 p-8 rounded-xl shadow-2xl max-w-md w-full">
     <h1 class="text-3xl font-bold text-center mb-6">🔐 Iniciar Sesión</h1>
+
+    <div id="errorMessage" class="hidden bg-red-600 text-white p-3 rounded mb-4"></div>
 
     <form id="loginForm" class="space-y-4">
       <div>
@@ -27,45 +30,47 @@
     </form>
 
     <div class="mt-6 text-center">
-      <p>¿No tienes cuenta? <a href="#" class="text-blue-300 hover:underline">Regístrate</a></p>
-    </div>
-
-    <div class="mt-4 pt-4 border-t border-gray-700">
-      <button onclick="loginAsGuest()"
-              class="w-full py-2 bg-gray-700 rounded hover:bg-gray-600 transition">
-        Entrar como Invitado (solo contenido gratis)
-      </button>
+      <p>Usuarios de prueba:</p>
+      <p class="text-sm text-gray-300">User: <strong>user@test.com</strong> | Pass: <strong>123</strong></p>
+      <p class="text-sm text-gray-300">Admin: <strong>admin@test.com</strong> | Pass: <strong>admin123</strong></p>
     </div>
   </div>
 
-  <script src="js/main.js"></script>
+  <script src="../js/app.js"></script>
   <script>
     document.getElementById('loginForm').addEventListener('submit', function(e) {
       e.preventDefault();
+      
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
+      const errorDiv = document.getElementById('errorMessage');
+      errorDiv.classList.add('hidden');
 
-      // Simulamos login
-      const user = {
-        email: email,
-        plan: 'free', // Por defecto es free
-        joined: new Date().toLocaleDateString()
+      // Simulamos base de datos de usuarios
+      const users = {
+        'user@test.com': { password: '123', role: 'user', name: 'Usuario Normal' },
+        'admin@test.com': { password: 'admin123', role: 'admin', name: 'Administrador' }
       };
 
-      localStorage.setItem('user', JSON.stringify(user));
-      alert('¡Login exitoso! Serás redirigido a tu panel.');
-      window.location.href = 'dashboard.html';
+      const user = users[email];
+
+      if (user && user.password === password) {
+        // Guardamos en localStorage
+        const userData = {
+          email: email,
+          role: user.role,
+          name: user.name,
+          loggedIn: true
+        };
+        localStorage.setItem('user', JSON.stringify(userData));
+        
+        alert('¡Login exitoso!');
+        window.location.href = user.role === 'admin' ? 'admin.html' : 'dashboard.html';
+      } else {
+        errorDiv.textContent = '❌ Email o contraseña incorrectos';
+        errorDiv.classList.remove('hidden');
+      }
     });
-
-    function loginAsGuest() {
-      const user = {
-        email: 'invitado@minecraftcode.com',
-        plan: 'free',
-        joined: 'Invitado'
-      };
-      localStorage.setItem('user', JSON.stringify(user));
-      window.location.href = 'dashboard.html';
-    }
   </script>
 
 </body>
