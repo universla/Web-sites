@@ -1,3 +1,4 @@
+
 /* css/style.css */
 body {
   background-attachment: fixed;
@@ -5,7 +6,20 @@ body {
 
 button:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.5);
 }
 
-/* Puedes agregar más estilos personalizados aquí */
+/* Estilos adicionales personalizados */
+.prose h2 {
+  color: #1f2937;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.prose ul {
+  list-style-type: disc;
+  margin-left: 1.5em;
+  margin-bottom: 1em;
+}
+
+/* Puedes agregar más estilos aquí */
