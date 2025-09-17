@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CodeSnippets Pro - Comparte y organiza tu código</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+
+  <!-- Header -->
+  <header class="bg-white shadow-sm">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-3xl font-bold text-blue-600">CodeSnippets Pro</h1>
+      <nav class="space-x-4">
+        <a href="index.html" class="text-gray-700 hover:underline">Inicio</a>
+        <a href="legal/privacy.html" class="text-gray-700 hover:underline">Privacidad</a>
+        <a href="legal/terms.html" class="text-gray-700 hover:underline">Términos</a>
+        <a href="login.html" class="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700">Iniciar Sesión</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main class="container mx-auto px-4 py-16 text-center">
+    <h1 class="text-5xl font-bold text-gray-800 mb-6">¡Organiza y Comparte tu Código!</h1>
+    <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-10">
+      Una plataforma simple y poderosa para guardar, organizar y compartir tus snippets de código. ¡Totalmente gratis!
+    </p>
+
+    <div class="flex flex-wrap justify-center gap-6 mb-16">
+      <a href="login.html"
+         class="px-8 py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition transform hover:scale-105 shadow-lg">
+        👨‍💻 Iniciar Sesión
+      </a>
+      <a href="legal/privacy.html"
+         class="px-8 py-4 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition transform hover:scale-105 shadow-lg">
+        📜 Política de Privacidad
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <h3 class="text-2xl font-bold mb-3">🔐 Login Seguro</h3>
+        <p>Inicia sesión con tu email y contraseña. Tus datos están protegidos.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <h3 class="text-2xl font-bold mb-3">📤 Sube Códigos</h3>
+        <p>Guarda tus snippets en cualquier lenguaje. Siempre disponibles.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <h3 class="text-2xl font-bold mb-3">👑 Panel Admin</h3>
+        <p>Los administradores pueden gestionar todo el contenido del sistema.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="mt-16 py-6 bg-gray-100 text-center text-sm text-gray-600">
+    <p>© 2025 CodeSnippets Pro. Todos los derechos reservados.</p>
+    <p class="mt-2">
+      <a href="legal/privacy.html" class="text-blue-600 hover:underline">Política de Privacidad</a> |
+      <a href="legal/terms.html" class="text-blue-600 hover:underline">Términos y Condiciones</a>
+    </p>
+  </footer>
+
+</body>
+</html>
