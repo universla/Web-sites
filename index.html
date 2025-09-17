@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Code Web - Simple</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    code {
+      display: block;
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+  <!-- Header -->
+  <header class="bg-white shadow-sm">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-blue-600">MyCodeWeb</h1>
+      <a href="#" class="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700">Iniciar sesión</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main class="container mx-auto px-4 py-12 text-center">
+    <h1 class="text-4xl font-bold text-gray-800 mb-4">¡Bienvenido a My Code Web!</h1>
+    <p class="text-lg text-gray-600 mb-8">Sube, organiza y comparte tus snippets de código.</p>
+
+    <!-- Botones Discord + GitHub -->
+    <div class="flex flex-wrap justify-center gap-4 mb-12">
+      <a
+        href="https://discord.gg/tu-invite-aqui"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="px-6 py-3 bg-[#5865F2] text-white rounded-lg hover:bg-[#4752c4] flex items-center gap-2 shadow-md transition"
+      >
+        💬 Únete a Discord
+      </a>
+      <a
+        href="https://github.com/tu-usuario/my-code-web"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 flex items-center gap-2 shadow-md transition"
+      >
+        🐙 Ver en GitHub
+      </a>
+    </div>
+
+    <!-- Formulario simulado -->
+    <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md mb-8">
+      <h2 class="text-xl font-semibold mb-4">Sube un snippet (simulado)</h2>
+      <input type="text" placeholder="Título" class="w-full p-2 mb-2 border rounded" disabled />
+      <select class="w-full p-2 mb-2 border rounded" disabled>
+        <option>JavaScript</option>
+      </select>
+      <textarea placeholder="Pega tu código aquí..." rows="6" class="w-full p-2 mb-2 border rounded font-mono" disabled></textarea>
+      <button class="px-4 py-2 bg-blue-600 text-white rounded opacity-50 cursor-not-allowed" disabled>Subir Código (requiere login)</button>
+    </div>
+
+    <!-- Ejemplo de panel de códigos -->
+    <h2 class="text-2xl font-semibold mb-6">Snippets públicos (ejemplo)</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Snippet 1 -->
+      <div class="bg-white p-5 rounded-lg shadow-md">
+        <div class="flex justify-between items-start mb-2">
+          <h3 class="text-lg font-semibold">Hola Mundo JS</h3>
+          <span class="text-xs bg-gray-200 px-2 py-1 rounded">javascript</span>
+        </div>
+        <code>
+function saludar() {
+  console.log("¡Hola Mundo!");
+}
+saludar();
+        </code>
+        <div class="text-xs text-gray-500 mt-2">Creado: 10/06/2025</div>
+      </div>
+
+      <!-- Snippet 2 -->
+      <div class="bg-white p-5 rounded-lg shadow-md">
+        <div class="flex justify-between items-start mb-2">
+          <h3 class="text-lg font-semibold">Suma básica</h3>
+          <span class="text-xs bg-gray-200 px-2 py-1 rounded">javascript</span>
+        </div>
+        <code>
+function sumar(a, b) {
+  return a + b;
+}
+console.log(sumar(5, 3)); // 8
+        </code>
+        <div class="text-xs text-gray-500 mt-2">Creado: 09/06/2025</div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-16 py-6 bg-gray-100 text-center text-sm text-gray-600">
+    <div class="flex flex-wrap justify-center gap-4 mb-4">
+      <a href="https://discord.gg/tu-invite-aqui" target="_blank" class="text-blue-600 hover:underline">Discord</a>
+      <a href="https://github.com/tu-usuario/my-code-web" target="_blank" class="text-gray-800 hover:underline">GitHub</a>
+    </div>
+    <p>© 2025 My Code Web. Todos los derechos reservados.</p>
+  </footer>
+
+</body>
+</html>
