@@ -1,3 +1,4 @@
+
 // components/CodePanel.tsx
 export default function CodePanel({ code }: { code: any }) {
   return (
