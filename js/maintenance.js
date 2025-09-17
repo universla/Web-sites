@@ -1,3 +1,4 @@
+
 // js/maintenance.js - Verifica si el sitio está en mantenimiento
 
 async function checkMaintenance() {
