@@ -1,22 +1,22 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mi Panel - Minecraft Code</title>
+  <title>Mi Panel - CodeSnippets Pro</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body class="bg-gradient-to-br from-gray-900 to-blue-900 min-h-screen text-white">
 
   <!-- Header -->
   <header class="bg-black bg-opacity-30 backdrop-blur-sm">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-3xl font-bold">⛏️ Mi Panel</h1>
+      <h1 class="text-3xl font-bold">👨‍💻 Mi Panel</h1>
       <nav class="space-x-4">
         <a href="index.html" class="hover:underline">Inicio</a>
-        <a href="videos.html" class="hover:underline">Videos</a>
-        <a href="premium.html" class="hover:underline">Premium</a>
+        <a href="upload.html" class="hover:underline">Subir Código</a>
         <button onclick="logout()" class="px-4 py-2 bg-red-600 rounded hover:bg-red-500">Cerrar Sesión</button>
       </nav>
     </div>
@@ -28,68 +28,54 @@
       <!-- Rellenado por JS -->
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="bg-green-900 p-5 rounded-lg">
-        <h3 class="text-xl font-bold mb-3">📚 Progreso</h3>
-        <p>Videos vistos: <span id="videosVistos">0</span>/50</p>
-        <div class="w-full bg-gray-700 rounded-full h-2 mt-2">
-          <div id="progresoBar" class="bg-green-500 h-2 rounded-full" style="width: 0%"></div>
-        </div>
-      </div>
-
-      <div class="bg-blue-900 p-5 rounded-lg">
-        <h3 class="text-xl font-bold mb-3">💎 Mi Plan</h3>
-        <p id="miPlan">Cargando...</p>
-        <button onclick="upgradePlan()" class="mt-3 w-full py-2 bg-yellow-500 text-black rounded hover:bg-yellow-400">
-          ¡Quiero Premium!
-        </button>
-      </div>
-
-      <div class="bg-purple-900 p-5 rounded-lg">
-        <h3 class="text-xl font-bold mb-3">🎁 Recompensas</h3>
-        <p>Puntos: <span id="puntos">100</span></p>
-        <p>Rango: <span id="rango">Explorador</span></p>
-      </div>
+    <h2 class="text-2xl font-bold mb-6">Mis Códigos Subidos</h2>
+    <div id="codesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Los códigos se cargarán aquí -->
     </div>
 
-    <div class="mt-10">
-      <h2 class="text-2xl font-bold mb-4">Mis Snippets Guardados</h2>
-      <div id="snippetsGuardados" class="space-y-3">
-        <p class="text-gray-400">No tienes snippets guardados aún.</p>
-      </div>
+    <div id="noCodes" class="text-center py-10 text-gray-400 hidden">
+      <p>❌ No has subido ningún código aún.</p>
+      <a href="upload.html" class="text-blue-400 hover:underline mt-2 inline-block">¡Sube tu primer código!</a>
     </div>
   </main>
 
-  <script src="js/main.js"></script>
+  <script src="../js/app.js"></script>
   <script>
     function loadDashboard() {
       const user = JSON.parse(localStorage.getItem('user'));
-      if (!user) {
+      if (!user || !user.loggedIn) {
         window.location.href = 'login.html';
         return;
       }
 
+      // Mostrar info de usuario
       document.getElementById('userInfo').innerHTML = `
-        <h2 class="text-2xl font-bold mb-2">👋 ¡Hola, ${user.email}!</h2>
-        <p><strong>Plan:</strong> ${user.plan === 'free' ? 'Gratis' : user.plan.toUpperCase()}</p>
-        <p><strong>Desde:</strong> ${user.joined}</p>
+        <h2 class="text-2xl font-bold mb-2">👋 ¡Hola, ${user.name}!</h2>
+        <p><strong>Email:</strong> ${user.email}</p>
+        <p><strong>Rol:</strong> ${user.role === 'admin' ? 'Administrador' : 'Usuario'}</p>
       `;
 
-      document.getElementById('miPlan').textContent = user.plan === 'free' ? 'Plan Gratis' : `Plan ${user.plan.toUpperCase()}`;
+      // Cargar códigos del usuario
+      const codes = JSON.parse(localStorage.getItem('codes') || '[]');
+      const userCodes = codes.filter(code => code.owner === user.email);
       
-      // Simulamos progreso
-      const vistos = Math.floor(Math.random() * 50);
-      document.getElementById('videosVistos').textContent = vistos;
-      document.getElementById('progresoBar').style.width = `${(vistos/50)*100}%`;
+      const container = document.getElementById('codesContainer');
+      const noCodes = document.getElementById('noCodes');
 
-      // Simulamos snippets
-      const snippets = [
-        "minecart-autopilot.js",
-        "redstone-logic.py",
-        "villager-trader.mcfunction"
-      ];
-      const snippetsHTML = snippets.map(s => `<div class="bg-gray-800 p-3 rounded font-mono text-sm">${s}</div>`).join('');
-      document.getElementById('snippetsGuardados').innerHTML = snippetsHTML;
+      if (userCodes.length === 0) {
+        noCodes.classList.remove('hidden');
+        container.innerHTML = '';
+      } else {
+        noCodes.classList.add('hidden');
+        container.innerHTML = userCodes.map(code => `
+          <div class="bg-gray-800 p-5 rounded-lg">
+            <h3 class="font-bold text-lg">${code.title}</h3>
+            <p class="text-sm text-blue-300 mb-2">${code.language}</p>
+            <pre class="bg-gray-900 p-3 rounded text-xs overflow-x-auto"><code>${code.code}</code></pre>
+            <p class="text-xs text-gray-400 mt-2">Subido: ${code.date}</p>
+          </div>
+        `).join('');
+      }
     }
 
     function logout() {
@@ -97,12 +83,6 @@
       window.location.href = 'index.html';
     }
 
-    function upgradePlan() {
-      alert('¡Gracias por tu interés en Premium! En una versión real, aquí integraríamos Stripe o PayPal.');
-      // En versión real: redirigir a /premium o a checkout de Stripe
-    }
-
-    // Cargar dashboard al iniciar
     document.addEventListener('DOMContentLoaded', loadDashboard);
   </script>
 
