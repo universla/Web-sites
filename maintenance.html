@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🚧 En Mantenimiento - CodeSnippets Pro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #1a1a1a, #333);
+      color: white;
+    }
+    .loader {
+      width: 48px;
+      height: 48px;
+      border: 5px solid #333;
+      border-bottom-color: #06b6d4;
+      border-radius: 50%;
+      display: inline-block;
+      box-sizing: border-box;
+      animation: rotation 1s linear infinite;
+    }
+    @keyframes rotation {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4 text-center">
+
+  <div class="max-w-md">
+    <div class="loader mb-6"></div>
+    <h1 class="text-4xl font-bold mb-4">🚧 En Mantenimiento</h1>
+    <p id="maintenanceMessage" class="text-lg mb-6">
+      Estamos realizando mejoras en el sistema. Volveremos en breve.
+    </p>
+    
+    <div id="timer" class="text-xl font-mono bg-gray-800 p-4 rounded-lg mb-6">
+      --:--:--
+    </div>
+    
+    <p class="text-sm text-gray-400">
+      Por favor, vuelve a intentarlo más tarde.
+    </p>
+  </div>
+
+  <script src="js/maintenance.js"></script>
+  <script>
+    // Cargar configuración y actualizar mensaje
+    fetch('maintenance.json')
+      .then(response => response.json())
+      .then(config => {
+        if (config.message) {
+          document.getElementById('maintenanceMessage').textContent = config.message;
+        }
+        startCountdown(config.startTime, config.endTime);
+      })
+      .catch(err => {
+        console.error("Error cargando maintenance.json:", err);
+      });
+
+    function startCountdown(startTime, endTime) {
+      const timerElement = document.getElementById('timer');
+      const now = new Date();
+      const end = new Date(endTime);
+      
+      if (now > end) {
+        timerElement.textContent = "¡Ya casi terminamos!";
+        return;
+      }
+
+      const updateTimer = () => {
+        const now = new Date();
+        const distance = end - now;
+
+        if (distance < 0) {
+          timerElement.textContent = "¡Ya casi terminamos!";
+          return;
+        }
+
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        timerElement.textContent = 
+          `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+        setTimeout(updateTimer, 1000);
+      };
+
+      updateTimer();
+    }
+  </script>
+
+</body>
+</html>
