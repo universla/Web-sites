@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Panel de Administrador - CodeSnippets Pro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-gradient-to-br from-red-900 to-purple-900 min-h-screen text-white">
+
+  <!-- Header -->
+  <header class="bg-black bg-opacity-30 backdrop-blur-sm">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-3xl font-bold">👑 PANEL DE ADMINISTRADOR</h1>
+      <nav class="space-x-4">
+        <a href="index.html" class="hover:underline">Inicio</a>
+        <a href="dashboard.html" class="hover:underline">Mi Panel</a>
+        <button onclick="logout()" class="px-4 py-2 bg-red-600 rounded hover:bg-red-500">Cerrar Sesión</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Contenido -->
+  <main class="container mx-auto px-4 py-10">
+    <div id="adminInfo" class="bg-black bg-opacity-30 p-6 rounded-lg mb-8">
+      <!-- Rellenado por JS -->
+    </div>
+
+    <div id="adminContent" class="hidden">
+      <h2 class="text-2xl font-bold mb-6">Todos los Códigos del Sistema</h2>
+      <div id="allCodes" class="space-y-4">
+        <!-- Se llenará con JS -->
+      </div>
+
+      <h2 class="text-2xl font-bold mb-6 mt-10">Usuarios Registrados</h2>
+      <div id="usersList" class="bg-gray-800 p-4 rounded-lg">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="usersGrid">
+          <!-- Se llenará con JS -->
+        </div>
+      </div>
+    </div>
+
+    <div id="accessDenied" class="bg-red-600 text-white p-6 rounded-lg text-center hidden">
+      <h2 class="text-2xl font-bold mb-4">🚫 ACCESO DENEGADO</h2>
+      <p>Solo los administradores pueden acceder a este panel.</p>
+      <a href="login.html" class="text-white font-bold underline mt-4 inline-block">Iniciar sesión como administrador</a>
+    </div>
+  </main>
+
+  <script src="../js/app.js"></script>
+  <script>
+    function loadAdminPanel() {
+      const user = JSON.parse(localStorage.getItem('user'));
+      
+      if (!user || !user.loggedIn) {
+        window.location.href = 'login.html';
+        return;
+      }
+
+      document.getElementById('adminInfo').innerHTML = `
+        <h2 class="text-2xl font-bold mb-2">👑 Bienvenido, ${user.name}!</h2>
+        <p><strong>Email:</strong> ${user.email}</p>
+        <p><strong>Rol:</strong> ${user.role === 'admin' ? 'Administrador' : 'Usuario'}</p>
+      `;
+
+      const adminContent = document.getElementById('adminContent');
+      const accessDenied = document.getElementById('accessDenied');
+
+      if (user.role === 'admin') {
+        adminContent.classList.remove('hidden');
+        accessDenied.classList.add('hidden');
+        loadAllCodes();
+        loadAllUsers();
+      } else {
+        adminContent.classList.add('hidden');
+        accessDenied.classList.remove('hidden');
+      }
+    }
+
+    function loadAllCodes() {
+      const codes = JSON.parse(localStorage.getItem('codes') || '[]');
+      const container = document.getElementById('allCodes');
+      
+      if (codes.length === 0) {
+        container.innerHTML = '<p class="text-gray-400">No hay códigos subidos aún.</p>';
+        return;
+      }
+
+      container.innerHTML = codes.map(code => `
+        <div class="bg-gray-800 p-4 rounded-lg">
+          <div class="flex justify-between items-start">
+            <div>
+              <h3 class="font-bold">${code.title}</h3>
+              <p class="text-sm text-blue-300">${code.language}</p>
+              <p class="text-xs text-gray-400">Dueño: ${code.owner}</p>
+            </div>
+            <button onclick="deleteCode('${code.id}')" class="bg-red-600 text-white px-3 py-1 rounded text-sm hover:bg-red-500">Eliminar</button>
+          </div>
+          <pre class="bg-gray-900 p-2 rounded text-xs mt-2 overflow-x-auto"><code>${code.code}</code></pre>
+          <p class="text-xs text-gray-400 mt-1">Subido: ${code.date}</p>
+        </div>
+      `).join('');
+    }
+
+    function loadAllUsers() {
+      // Simulamos lista de usuarios (en localStorage no guardamos todos, pero para demo)
+      const users = [
+        { email: 'user@test.com', role: 'user', name: 'Usuario Normal' },
+        { email: 'admin@test.com', role: 'admin', name: 'Administrador' }
+      ];
+
+      const grid = document.getElementById('usersGrid');
+      grid.innerHTML = users.map(user => `
+        <div class="bg-gray-700 p-4 rounded">
+          <h3 class="font-bold">${user.name}</h3>
+          <p class="text-sm">${user.email}</p>
+          <p class="text-xs text-${user.role === 'admin' ? 'yellow' : 'green'}-400">Rol: ${user.role}</p>
+        </div>
+      `).join('');
+    }
+
+    function deleteCode(id) {
+      if (confirm('¿Estás seguro de eliminar este código?')) {
+        let codes = JSON.parse(localStorage.getItem('codes') || '[]');
+        codes = codes.filter(code => code.id !== id);
+        localStorage.setItem('codes', JSON.stringify(codes));
+        loadAllCodes();
+        alert('Código eliminado.');
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem('user');
+      window.location.href = 'index.html';
+    }
+
+    document.addEventListener('DOMContentLoaded', loadAdminPanel);
+  </script>
+
+</body>
+</html>
