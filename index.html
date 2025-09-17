@@ -4,138 +4,90 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Code Web - Simple & Static</title>
+  <title>Minecraft Code Academy</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-  <style>
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    code { font-family: 'Fira Code', 'Courier New', monospace; }
-    .hljs { padding: 1rem; border-radius: 0.5rem; }
-  </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen">
+<body class="bg-gradient-to-br from-green-900 to-green-700 min-h-screen text-white">
 
   <!-- Header -->
-  <header class="bg-white shadow-sm border-b">
+  <header class="bg-black bg-opacity-30 backdrop-blur-sm">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
-        MyCodeWeb
-      </h1>
-      <button onclick="alert('Función de login simulada. En versión completa se usa GitHub OAuth.')"
-              class="px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition">
-        Iniciar sesión
-      </button>
+      <h1 class="text-3xl font-bold">⛏️ Minecraft Code</h1>
+      <nav class="space-x-4">
+        <a href="index.html" class="hover:underline">Inicio</a>
+        <a href="videos.html" class="hover:underline">Videos</a>
+        <a href="premium.html" class="hover:underline">Premium</a>
+        <a href="login.html" class="px-4 py-2 bg-yellow-500 text-black rounded font-bold hover:bg-yellow-400">Iniciar Sesión</a>
+      </nav>
     </div>
   </header>
 
-  <!-- Hero Section -->
+  <!-- Hero -->
   <main class="container mx-auto px-4 py-16 text-center">
-    <h1 class="text-5xl md:text-6xl font-extrabold text-gray-800 mb-6">
-      ¡Bienvenido a <span class="text-blue-600">My Code Web</span>!
+    <h1 class="text-5xl md:text-6xl font-extrabold mb-6">
+      ¡Domina Minecraft con Código!
     </h1>
-    <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-12">
-      Sube, organiza y comparte tus snippets de código. Sin complicaciones. Totalmente gratis.
+    <p class="text-xl max-w-3xl mx-auto mb-10">
+      Aprende a crear mods, plugins, servidores y automatizaciones usando JavaScript, Python y más.
     </p>
 
-    <!-- Botones Discord + GitHub -->
+    <!-- Botones -->
     <div class="flex flex-wrap justify-center gap-6 mb-16">
-      <a
-        href="https://discord.gg/tu-invite-aqui"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group px-8 py-4 bg-[#5865F2] text-white rounded-xl hover:bg-[#4752c4] flex items-center gap-3 shadow-lg hover:shadow-xl transition-transform hover:scale-105"
-      >
-        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.38 18.38 0 0 0-5.487 0 12.73 12.73 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.89.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .364-.27c.122-.095.246-.187.365-.283a.074.074 0 0 1 .078-.01c3.927 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.096.244.188.366.283.09.07.195.148.289.222a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.89.076.076 0 0 0-.041.106c.36.698.772 1.363 1.225 1.993a.077.077 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.075.075 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.28c-1.188 0-2.164-1.084-2.164-2.418 0-1.335.956-2.419 2.164-2.419 1.22 0 2.185 1.095 2.164 2.42 0 1.334-.956 2.418-2.164 2.418zm7.975 0c-1.188 0-2.164-1.084-2.164-2.418 0-1.335.956-2.419 2.164-2.419 1.22 0 2.185 1.095 2.164 2.42 0 1.334-.944 2.418-2.164 2.418z"/>
-        </svg>
-        <span class="font-medium">Únete a Discord</span>
+      <a href="videos.html"
+         class="px-8 py-4 bg-green-600 rounded-lg hover:bg-green-500 transition transform hover:scale-105 shadow-lg">
+        🎬 Ver Videos
       </a>
-
-      <a
-        href="https://github.com/tu-usuario/my-code-web"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group px-8 py-4 bg-black text-white rounded-xl hover:bg-gray-800 flex items-center gap-3 shadow-lg hover:shadow-xl transition-transform hover:scale-105"
-      >
-        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.6.11.819-.26.819-.577 0-.285-.01-1.04-.016-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.3 24 12c0-6.627-5.373-12-12-12"/>
-        </svg>
-        <span class="font-medium">Ver en GitHub</span>
+      <a href="premium.html"
+         class="px-8 py-4 bg-yellow-500 text-black rounded-lg hover:bg-yellow-400 transition transform hover:scale-105 shadow-lg">
+        💎 Contenido Premium
       </a>
     </div>
 
-    <!-- Ejemplo de Snippets -->
-    <h2 class="text-3xl font-bold text-gray-800 mb-10">Snippets Populares</h2>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-      <!-- Snippet 1 -->
-      <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition overflow-hidden">
-        <div class="p-5">
-          <div class="flex justify-between items-start mb-3">
-            <h3 class="text-lg font-bold text-gray-800">Hola Mundo</h3>
-            <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">JavaScript</span>
-          </div>
-          <pre><code class="javascript">console.log("¡Hola Mundo!");</code></pre>
-          <div class="text-xs text-gray-500 mt-3">⭐ 125 likes · 👁️ 1.2k vistas</div>
-        </div>
+    <!-- Cards de beneficios -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      <div class="bg-black bg-opacity-20 p-6 rounded-lg">
+        <h3 class="text-2xl font-bold mb-3">Gratis</h3>
+        <ul class="text-left space-y-2">
+          <li>✅ 5 videos introductorios</li>
+          <li>✅ Snippets básicos</li>
+          <li>✅ Comunidad Discord</li>
+        </ul>
       </div>
-
-      <!-- Snippet 2 -->
-      <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition overflow-hidden">
-        <div class="p-5">
-          <div class="flex justify-between items-start mb-3">
-            <h3 class="text-lg font-bold text-gray-800">Función Suma</h3>
-            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">JavaScript</span>
-          </div>
-          <pre><code class="javascript">function suma(a, b) {
-  return a + b;
-}</code></pre>
-          <div class="text-xs text-gray-500 mt-3">⭐ 89 likes · 👁️ 943 vistas</div>
-        </div>
+      <div class="bg-yellow-500 text-black p-6 rounded-lg transform scale-105 shadow-xl">
+        <h3 class="text-2xl font-bold mb-3">Premium - $5/mes</h3>
+        <ul class="text-left space-y-2">
+          <li>✅ Todos los videos</li>
+          <li>✅ Proyectos completos</li>
+          <li>✅ Soporte prioritario</li>
+          <li>✅ Descargas exclusivas</li>
+        </ul>
+        <button onclick="alert('¡Regístrate o inicia sesión para acceder!')"
+                class="mt-4 w-full py-2 bg-black text-white rounded hover:bg-gray-800">
+          ¡Quiero Premium!
+        </button>
       </div>
-
-      <!-- Snippet 3 -->
-      <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition overflow-hidden">
-        <div class="p-5">
-          <div class="flex justify-between items-start mb-3">
-            <h3 class="text-lg font-bold text-gray-800">Fetch API</h3>
-            <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded-full">JavaScript</span>
-          </div>
-          <pre><code class="javascript">fetch('/api/data')
-  .then(res => res.json())
-  .then(data => console.log(data));</code></pre>
-          <div class="text-xs text-gray-500 mt-3">⭐ 203 likes · 👁️ 2.5k vistas</div>
-        </div>
+      <div class="bg-black bg-opacity-20 p-6 rounded-lg">
+        <h3 class="text-2xl font-bold mb-3">VIP - $10/mes</h3>
+        <ul class="text-left space-y-2">
+          <li>✅ Todo lo de Premium</li>
+          <li>✅ Clases en vivo</li>
+          <li>✅ Proyectos personalizados</li>
+          <li>✅ Mención en la web</li>
+        </ul>
       </div>
-    </div>
-
-    <!-- Pie de página -->
-    <div class="mt-20 pt-8 border-t border-gray-200">
-      <p class="text-gray-500">
-        ¿Quieres subir tus propios snippets? En la versión completa con Next.js y Supabase podrás hacerlo.
-        <br>
-        <a href="https://github.com/tu-usuario/my-code-web" class="text-blue-600 hover:underline font-medium">
-          Ver código fuente en GitHub →
-        </a>
-      </p>
     </div>
   </main>
 
   <!-- Footer -->
-  <footer class="py-6 bg-gray-900 text-center text-white">
-    <p class="text-sm">
-      © 2025 My Code Web. Hecho con ❤️ para la comunidad de devs.
-      <br>
-      <a href="https://vercel.com" class="text-blue-300 hover:underline">Hosted on Vercel</a>
+  <footer class="py-6 bg-black bg-opacity-40 text-center text-sm">
+    <p>© 2025 Minecraft Code Academy. Hecho con ❤️ para gamers y devs.</p>
+    <p class="mt-2">
+      <a href="#" class="text-yellow-300 hover:underline">Términos</a> |
+      <a href="#" class="text-yellow-300 hover:underline">Privacidad</a> |
+      <a href="#" class="text-yellow-300 hover:underline">Contacto</a>
     </p>
   </footer>
 
-  <script>
-    // Activa syntax highlighting
-    document.addEventListener('DOMContentLoaded', () => {
-      hljs.highlightAll();
-    });
-  </script>
 </body>
 </html>
